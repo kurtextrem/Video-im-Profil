@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language languagecode="en">
 	<category name="wcf.user.option">
-		<item name="wcf.user.option.youtube"><![CDATA[]]>
+		<item name="wcf.user.option.video"><![CDATA[]]>
 		</item>
 
-		<item name="wcf.user.option.youtube.description"><![CDATA[Please type in the URL of a Youtube / Vimeo video.]]>
+		<item name="wcf.user.option.video.description"><![CDATA[Please type in the URL of a Youtube / Vimeo video.]]>
 		</item>
 
-		<item name="wcf.user.option.youtube.profile.youtube"><![CDATA[Video]]>
+		<item name="wcf.user.option.category.profile.video"><![CDATA[Video]]>
 		</item>
 
 	</category>
