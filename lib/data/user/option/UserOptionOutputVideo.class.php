@@ -35,17 +35,26 @@ class UserOptionOutputVideo implements UserOptionOutput {
 			$parsed_url = parse_url($value);
 			$return = '<div id="video">';
 
-			if(!$parsed_url['host'])
-				$parsed_url['host'] = '';
-			switch ($parsed_url['host']) {
+			if(empty($parsed_url['query']))
+				$parsed_url['query'] = '';
+			if (!isset($parsed_url['host'])){
+				$host = '';
+			}else{
+				$host = str_replace('www.', '', $parsed_url['host']);
+			}
+
+			preg_match_all('/;([^;]+)/', $parsed_url['path'].$parsed_url['query'], $matches);
+			$replace = array('hd' => 'hd=1', 'autoplay' => 'autplay=1', 'loop' => 'loop=1');
+
+			switch ($host) {
 				case 'youtube.com':
 					preg_match('/v=([^&#;]+)/', $parsed_url['query'], $matches);
-					$return .= '<object type="application/x-shockwave-flash" style="width:425px; height:349px" data="http://www.youtube.com/v/'.$matches.'?'.$addi.'"><param name="movie" value="http://www.youtube.com/v/'.$matches.'?'.$addi.'" /><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param></object>';
+					$return .= '<object type="application/x-shockwave-flash" style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches.'?'.$flags.'"><param name="movie" value="//www.youtube.com/v/'.$matches.'?'.$flags.'" /><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param></object>';
 					break;
 
 				case 'vimeo.com':
-					str_replace('/', '', &$parsed_url['path']);
-					$return .= '<object width="400" height="225"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$parsed_url['path'].'&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /></object>';
+					$path = str_replace('/', '', $parsed_url['path']);
+					$return .= '<object width="400" height="225"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$path.$flags.'" /></object>';
 					break;
 
 				case 'myvideo.de':
@@ -57,7 +66,7 @@ class UserOptionOutputVideo implements UserOptionOutput {
 					return '<object type="application/x-shockwave-flash" style="width:425px; height:349px" data="http://www.youtube.com/v/DD0A2plMSVA"><param name="movie" value="http://www.youtube.com/v/DD0A2plMSVA" /><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param></object>';
 			}
 
-			return $return+'</div>';
+			return $return + '</div>';
 		}
 	}
 

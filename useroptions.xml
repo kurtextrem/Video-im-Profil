@@ -5,7 +5,6 @@
 		<categories>
 			<category name="profile.video">
 				<parent>profile</parent>
-				<icon>userProfileVideoM.png</icon>
 			</category>
 		</categories>
 		<options>
