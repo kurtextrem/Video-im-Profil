@@ -24,7 +24,7 @@ Seit Version 1.4 kann man Flash Videos designen und sogar HTML5 "erzwingen". Ein
 
  * ";hd" = Die Videos starten automatisch in HD.
 
- * ";color1=*" & ";color2=*" = Farbe vom Player festlegen. Funktioniert **nur** mit **Flash**.
+ * ";color1=\*" & ";color2=\*" = Farbe vom Player festlegen. Funktioniert **nur** mit **Flash**.
 
  * Beispiel: "http://www.youtube.com/watch?v=362OUej4t7k;hd;color1=0xe1600f;color2=0xfebd01" = HD Flash Video mit Gelb / Rotem Player.
 
