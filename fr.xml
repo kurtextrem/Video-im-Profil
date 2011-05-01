@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language languagecode="fr">
+	<category name="wcf.user.option">
+		<item name="wcf.user.option.youtube"><![CDATA[]]>
+		</item>
+
+		<item name="wcf.user.option.youtube.description"><![CDATA[S'il vous pla&icirc;t entrer un Youtube / Vimeo lien vid&eacute;o.]]>
+		</item>
+
+		<item name="wcf.user.option.category.profile.youtube"><![CDATA[Vid&eacute;o]]>
+		</item>
+
+	</category>
+</language>

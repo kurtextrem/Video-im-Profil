@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE package SYSTEM "http://www.woltlab.com/DTDs/package.dtd">
+<package name="com.kurtextrem.useroption.video">
+	<packageInformation>
+		<packageName>Profilfeld Video</packageName>
+		<packageDescription lang="de"><![CDATA[Erlaubt Mitglieder, ihr liebstes VIdeo im Profil zu zeigen. Icon von ElegantThemes.com]]>
+		</packageDescription>
+		<packageDescription lang="en"><![CDATA[Enables users to show their favorite video. Icon by ElegantThemes.com]]>
+		</packageDescription>
+		<version>2.0.0</version>
+		<date>2011-05-01</date>
+		<plugin>com.woltlab.wcf</plugin>
+	</packageInformation>
+
+	<authorInformation>
+		<author>kurtextrem</author>
+		<authorURL>http://wbblite.com</authorURL>
+	</authorInformation>
+
+	<instructions type="install">
+		<files>files.tar</files>
+		<useroptions>useroptions.xml</useroptions>
+		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="de-informal">de-informal.xml</languages>
+		<languages languagecode="en">en.xml</languages>
+		<languages languagecode="fr">fr.xml</languages>
+	</instructions>
+	<instructions type="update" fromversion="*">
+		<files>files.tar</files>
+		<useroptions>useroptions.xml</useroptions>
+		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="de-informal">de-informal.xml</languages>
+		<languages languagecode="en">en.xml</languages>
+		<languages languagecode="fr">fr.xml</languages>
+	</instructions>
+</package>
