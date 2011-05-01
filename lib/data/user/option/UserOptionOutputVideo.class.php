@@ -35,6 +35,8 @@ class UserOptionOutputVideo implements UserOptionOutput {
 			$parsed_url = parse_url($value);
 			$return = '<div id="video">';
 
+			if(!$parsed_url['host'])
+				$parsed_url['host'] = '';
 			switch ($parsed_url['host']) {
 				case 'youtube.com':
 					preg_match('/v=([^&#;]+)/', $parsed_url['query'], $matches);
