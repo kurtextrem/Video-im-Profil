@@ -37,14 +37,17 @@ class UserOptionOutputVideo implements UserOptionOutput {
 
 			switch ($parsed_url['host']) {
 				case 'youtube.com':
-					$return .= '<object type="application/x-shockwave-flash" style="width:425px; height:349px" data="http://www.youtube.com/v/'.$value.'?'.$addi.'"><param name="movie" value="http://www.youtube.com/v/'.$value.'?'.$addi.'" /><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param></object>';
+					preg_match('/v=([^&#;]+)/', $parsed_url['query'], $matches);
+					$return .= '<object type="application/x-shockwave-flash" style="width:425px; height:349px" data="http://www.youtube.com/v/'.$matches.'?'.$addi.'"><param name="movie" value="http://www.youtube.com/v/'.$matches.'?'.$addi.'" /><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param></object>';
 					break;
 
 				case 'vimeo.com':
-					$return .= '<object width="400" height="225"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=8234432&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /></object>';
+					str_replace('/', '', &$parsed_url['path']);
+					$return .= '<object width="400" height="225"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$parsed_url['path'].'&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /></object>';
 					break;
 
 				case 'myvideo.de':
+					preg_match('~/watch/(.*)/.*~', $parsed_url['path'], $matches);
 					$return .= '<object style="width:425px;height:350px;" width="425" height="350"><param name="movie" value="http://www.myvideo.de/movie/'.$value.'"></param><param name="AllowFullscreen" value="true"></param><param name="AllowScriptAccess" value="always"></param><embed src="http://www.myvideo.de/movie/'.$value.'" width="425" height="350" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed></object>';
 					break;
 
