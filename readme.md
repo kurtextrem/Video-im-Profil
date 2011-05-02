@@ -23,7 +23,7 @@ Seit Version 1.4 kann man Flash Videos "stylen" und sogar HTML5 "erzwingen". Ein
 
  * <del>`;html5` = HTML5 wird "erzwungen".</del>
 
- * `;hd` = Die Videos starten automatisch in HD.
+ * `;hd` = Das Videos startet in HD.
 
  * `;rel` = Ähnliche Videos werden angezeigt.
 

@@ -32,23 +32,22 @@ class UserOptionOutputVideo implements UserOptionOutput {
 
 		if (!empty($value)) {
 			StringUtil::encodeHTML($value);
-			$parsed_url = parse_url($value);
-			$return = '<div id="video">';
 
+			$parsed_url = parse_url($value);
 			if (empty($parsed_url['query']))
 				$parsed_url['query'] = '';
 			$host = 'www.'.str_replace('www.', '', $parsed_url['host']); // i do it so, cause sometime there is a www. url so i need to replace it first.
 
-
+			// parse ;XYZ
 			preg_match_all('/;([^;]+)/', $parsed_url['path'].$parsed_url['query'], $flags);
-			if (!empty($matches[1][0])) {
-				$flags = implode('&amp;', $flags);
+			if (!empty($flags[1][0])) {
+				$flags = implode('&amp;', $flags[1]);
 				$replace = array(
 					'hd' => 'hd=1',
 					'rel' => 'rel=1',
 					'autoplay' => 'autplay=1',
 					'loop' => 'loop=1',
-					'preview' => 'show_potrait=1',
+					'preview' => 'show_portrait=1',
 					'title' => 'show_title=1',
 					'by' => 'show_byline=1'
 				);
@@ -56,30 +55,35 @@ class UserOptionOutputVideo implements UserOptionOutput {
 					$flags = str_replace($replace, $with, $flags);
 				}
 			} else {
-				$flags = '';
+				$flags = 'rel=0&amp;show_portrait=0&amp;show_title=0&amp;show_byline=0';
 			}
 
+			// create div for styling
+			$return = '<div id="video">';
+			// check which provider
 			switch ($host) {
 				case 'www.youtube.com':
-					preg_match('/v=([^&#;]+)/', $parsed_url['query'], $matches);
-					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches[1].'?f=b'.$flags.'"><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
+					preg_match('/v=([^&#;]+)/', $parsed_url['query'], $matches); // extract id
+					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches[1].'?rel=0&amp;'.$flags.'"><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
 					break;
 
 				case 'www.vimeo.com':
-					$path = str_replace('/', '', $parsed_url['path']);
-					$return .= '<object style="width:500px; height:349px;"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$path.$flags.'" /></object>';
+					$path = str_replace('/', '', $parsed_url['path']); // extract id
+					$return .= '<object style="width:500px; height:349px;"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$path.'&amp;show_portrait=0&amp;show_title=0&amp;show_byline=0&amp;'.$flags.'" /></object>';
 					break;
 
 				case 'www.myvideo.de':
-					preg_match('~/watch/(.*)/.*~', $parsed_url['path'], $matches);
+					preg_match('~/watch/(.*)/.*~', $parsed_url['path'], $matches); // extract id
 					$return .= '<object style="width:500px; height:349px;" data="http://www.myvideo.de/movie/'.$matches[1].'"><param name="movie" value="http://www.myvideo.de/movie/'.$matches[1].'" /><param name="AllowFullscreen" value="true" /><param name="AllowScriptAccess" value="always" /></object>';
 					break;
 
 				default:
+					// if there is no valid provider
 					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/DD0A2plMSVA"><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
 					break;
 			}
 
+			// finish it
 			return $return.'</div>';
 		}
 	}
