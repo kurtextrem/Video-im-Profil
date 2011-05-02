@@ -39,10 +39,19 @@ class UserOptionOutputVideo implements UserOptionOutput {
 				$parsed_url['query'] = '';
 			$host = 'www.'.str_replace('www.', '', $parsed_url['host']); // i do it so, cause sometime there is a www. url so i need to replace it first.
 
+
 			preg_match_all('/;([^;]+)/', $parsed_url['path'].$parsed_url['query'], $flags);
 			if (!empty($matches[1][0])) {
-				$flags = implode('&', $flags);
-				$replace = array('hd' => 'hd=1', 'autoplay' => 'autplay=1', 'loop' => 'loop=1');
+				$flags = implode('&amp;', $flags);
+				$replace = array(
+					'hd' => 'hd=1',
+					'rel' => 'rel=1',
+					'autoplay' => 'autplay=1',
+					'loop' => 'loop=1',
+					'preview' => 'show_potrait=1',
+					'title' => 'show_title=1',
+					'by' => 'show_byline=1'
+				);
 				foreach ($replace as $replace => $with) {
 					$flags = str_replace($replace, $with, $flags);
 				}
@@ -53,7 +62,7 @@ class UserOptionOutputVideo implements UserOptionOutput {
 			switch ($host) {
 				case 'www.youtube.com':
 					preg_match('/v=([^&#;]+)/', $parsed_url['query'], $matches);
-					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches[1].'?f=b'.$flags.'"><param name="movie" value="//www.youtube.com/v/'.$matches[1].'?f=b'.$flags.'" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
+					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches[1].'?f=b'.$flags.'"><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
 					break;
 
 				case 'www.vimeo.com':
@@ -63,11 +72,11 @@ class UserOptionOutputVideo implements UserOptionOutput {
 
 				case 'www.myvideo.de':
 					preg_match('~/watch/(.*)/.*~', $parsed_url['path'], $matches);
-					$return .= '<object style="width:500px; height:349px;"><embed src="http://www.myvideo.de/movie/'.$matches[1].'" style="width:500px;height:349px;" /><param name="AllowFullscreen" value="true" /><param name="AllowScriptAccess" value="always" /></object>';
+					$return .= '<object style="width:500px; height:349px;" data="http://www.myvideo.de/movie/'.$matches[1].'"><param name="movie" value="http://www.myvideo.de/movie/'.$matches[1].'" /><param name="AllowFullscreen" value="true" /><param name="AllowScriptAccess" value="always" /></object>';
 					break;
 
 				default:
-					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/DD0A2plMSVA"><param name="movie" value="//www.youtube.com/v/DD0A2plMSVA" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
+					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/DD0A2plMSVA"><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
 					break;
 			}
 
