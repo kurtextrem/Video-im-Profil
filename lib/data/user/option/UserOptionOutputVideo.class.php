@@ -39,30 +39,39 @@ class UserOptionOutputVideo implements UserOptionOutput {
 				$parsed_url['query'] = '';
 			$host = 'www.'.str_replace('www.', '', $parsed_url['host']); // i do it so, cause sometime there is a www. url so i need to replace it first.
 
-			preg_match_all('/;([^;]+)/', $parsed_url['path'].$parsed_url['query'], $matches);
-			$replace = array('hd' => 'hd=1', 'autoplay' => 'autplay=1', 'loop' => 'loop=1');
+			preg_match_all('/;([^;]+)/', $parsed_url['path'].$parsed_url['query'], $flags);
+			if (!empty($matches[1][0])) {
+				$flags = implode('&', $flags);
+				$replace = array('hd' => 'hd=1', 'autoplay' => 'autplay=1', 'loop' => 'loop=1');
+				foreach ($replace as $replace => $with) {
+					$flags = str_replace($replace, $with, $flags);
+				}
+			} else {
+				$flags = '';
+			}
 
 			switch ($host) {
 				case 'www.youtube.com':
 					preg_match('/v=([^&#;]+)/', $parsed_url['query'], $matches);
-					$return .= '<object type="application/x-shockwave-flash" style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches.'?'.$flags.'"><param name="movie" value="//www.youtube.com/v/'.$matches.'?'.$flags.'" /><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param></object>';
+					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches[1].'?f=b'.$flags.'"><param name="movie" value="//www.youtube.com/v/'.$matches[1].'?f=b'.$flags.'" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
 					break;
 
 				case 'www.vimeo.com':
 					$path = str_replace('/', '', $parsed_url['path']);
-					$return .= '<object width="400" height="225"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$path.$flags.'" /></object>';
+					$return .= '<object style="width:500px; height:349px;"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$path.$flags.'" /></object>';
 					break;
 
 				case 'www.myvideo.de':
 					preg_match('~/watch/(.*)/.*~', $parsed_url['path'], $matches);
-					$return .= '<object style="width:425px;height:350px;" width="425" height="350"><param name="movie" value="http://www.myvideo.de/movie/'.$value.'"></param><param name="AllowFullscreen" value="true"></param><param name="AllowScriptAccess" value="always"></param><embed src="http://www.myvideo.de/movie/'.$value.'" width="425" height="350" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed></object>';
+					$return .= '<object style="width:500px; height:349px;"><embed src="http://www.myvideo.de/movie/'.$matches[1].'" style="width:500px;height:349px;" /><param name="AllowFullscreen" value="true" /><param name="AllowScriptAccess" value="always" /></object>';
 					break;
 
 				default:
-					return '<object type="application/x-shockwave-flash" style="width:425px; height:349px" data="http://www.youtube.com/v/DD0A2plMSVA"><param name="movie" value="http://www.youtube.com/v/DD0A2plMSVA" /><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param></object>';
+					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/DD0A2plMSVA"><param name="movie" value="//www.youtube.com/v/DD0A2plMSVA" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
+					break;
 			}
 
-			return $return + '</div>';
+			return $return.'</div>';
 		}
 	}
 
