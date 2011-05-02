@@ -37,7 +37,6 @@ class UserOptionOutputVideo implements UserOptionOutput {
 			if (empty($parsed_url['query']))
 				$parsed_url['query'] = '';
 			$host = 'www.'.str_replace('www.', '', $parsed_url['host']); // i do it so, cause sometime there is a www. url so i need to replace it first.
-
 			// parse ;XYZ
 			preg_match_all('/;([^;]+)/', $parsed_url['path'].$parsed_url['query'], $flags);
 			if (!empty($flags[1][0])) {
@@ -45,7 +44,7 @@ class UserOptionOutputVideo implements UserOptionOutput {
 				$replace = array(
 					'hd' => 'hd=1',
 					'rel' => 'rel=1',
-					'autoplay' => 'autplay=1',
+					'autoplay' => 'autoplay=1',
 					'loop' => 'loop=1',
 					'preview' => 'show_portrait=1',
 					'title' => 'show_title=1',

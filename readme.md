@@ -47,7 +47,7 @@ Seit Version 2.0 kann man Flash Videos "stylen" und sogar HTML5 "erzwingen". Ein
 
  * `;by` = Die Antwort auf "Von wem?" ist zu sehen.
 
- * Beispiel: `http://vimeo.com/8234432;color=00adef;autoplay;loop` = Rosa Rote Farben im Player, spielt automatisch ab und dauerhaft
+ * Beispiel: `http://vimeo.com/8234432;color=00adef;autoplay;loop` = Rosa Rote Farben im Player, spielt automatisch ab und dauerhaft.
 
 **Viel spaß damit, Kurtextrem**
 
