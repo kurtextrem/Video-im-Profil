@@ -46,15 +46,15 @@ class UserOptionOutputVideo implements UserOptionOutput {
 					'rel' => 'rel=1',
 					'autoplay' => 'autoplay=1',
 					'loop' => 'loop=1',
-					'preview' => 'show_portrait=1',
-					'title' => 'show_title=1',
-					'by' => 'show_byline=1'
+					'&amp;preview' => '',
+					'&amp;title' => '',
+					'&amp;by' => ''
 				);
 				foreach ($replace as $replace => $with) {
 					$flags = str_replace($replace, $with, $flags);
 				}
 			} else {
-				$flags = 'rel=0&amp;show_portrait=0&amp;show_title=0&amp;show_byline=0';
+				$flags = '';
 			}
 
 			// create div for styling
@@ -62,13 +62,15 @@ class UserOptionOutputVideo implements UserOptionOutput {
 			// check which provider
 			switch ($host) {
 				case 'www.youtube.com':
+					$flags .= '&amp;rel=0';
 					preg_match('/v=([^&#;]+)/', $parsed_url['query'], $matches); // extract id
-					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches[1].'?rel=0&amp;'.$flags.'"><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
+					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches[1].$flags.'"><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
 					break;
 
 				case 'www.vimeo.com':
+					$flags .= '&amp;show_portrait=0&amp;show_title=0&amp;show_byline=0';
 					$path = str_replace('/', '', $parsed_url['path']); // extract id
-					$return .= '<object style="width:500px; height:349px;"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$path.'&amp;show_portrait=0&amp;show_title=0&amp;show_byline=0&amp;'.$flags.'" /></object>';
+					$return .= '<object style="width:500px; height:349px;"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$path.'&amp;'.$flags.'" /></object>';
 					break;
 
 				case 'www.myvideo.de':
