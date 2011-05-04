@@ -8,7 +8,7 @@
 		<packageDescription lang="en"><![CDATA[Enables users to show their favorite video. Icon by ElegantThemes.com]]>
 		</packageDescription>
 		<version>2.0.0</version>
-		<date>2011-05-01</date>
+		<date>2011-05-04</date>
 		<plugin>com.woltlab.wcf</plugin>
 	</packageInformation>
 

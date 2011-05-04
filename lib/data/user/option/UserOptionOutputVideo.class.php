@@ -62,13 +62,13 @@ class UserOptionOutputVideo implements UserOptionOutput {
 			// check which provider
 			switch ($host) {
 				case 'www.youtube.com':
-					$flags .= '&amp;rel=0';
+					//$flags .= '&amp;rel=0'; <-- maybe this will completed later
 					preg_match('/v=([^&#;]+)/', $parsed_url['query'], $matches); // extract id
 					$return .= '<object style="width:425px; height:349px" data="//www.youtube.com/v/'.$matches[1].$flags.'"><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /></object>';
 					break;
 
 				case 'www.vimeo.com':
-					$flags .= '&amp;show_portrait=0&amp;show_title=0&amp;show_byline=0';
+					//$flags .= '&amp;show_portrait=0&amp;show_title=0&amp;show_byline=0'; <-- maybe this will completed later
 					$path = str_replace('/', '', $parsed_url['path']); // extract id
 					$return .= '<object style="width:500px; height:349px;"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$path.'&amp;'.$flags.'" /></object>';
 					break;
