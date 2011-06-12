@@ -101,3 +101,7 @@ Since Version 2.0 you can "style" Flash Videos. Append to the Video-URL:
  * Example: `http://vimeo.com/8234432;color=00adef;autoplay;loop` = Pink red colors on the Player, plays on load and loops.
 
 **Have fun with my Plugin, Kurtextrem**
+
+TODO
+----
+ * Implement all of these params: http://code.google.com/intl/en/apis/youtube/player_parameters.html
