@@ -70,6 +70,7 @@ class UserOptionOutputVideo implements UserOptionOutput {
 				case 'www.vimeo.com':
 					//$flags .= '&amp;show_portrait=0&amp;show_title=0&amp;show_byline=0'; <-- maybe this will completed later
 					$path = str_replace('/', '', $parsed_url['path']); // extract id
+					$path = preg_replace('/;([^;]+)/', '', $path);
 					if(!empty($flags)) // won't work if there is an &amp; without following chars
 						$flags = '&amp;'.$flags;
 					$return .= '<object style="width:500px; height:349px;"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$path.$flags.'" /></object>';
