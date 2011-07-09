@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
+<data>
+	<import>
+		<categories>
+			<category name="profile.video">
+				<parent>profile</parent>
+			</category>
+		</categories>
+		<options>
+			<option name="video">
+				<categoryname>profile.video</categoryname>
+				<optiontype>text</optiontype>
+				<outputclass>UserOptionOutputVideo</outputclass>
+			</option>
+		</options>
+	</import>
+</data>
