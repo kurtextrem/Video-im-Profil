@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language languagecode="de-informal">
+	<category name="wcf.user.option">
+		<item name="wcf.user.option.video"><![CDATA[]]>
+		</item>
+
+		<item name="wcf.user.option.video.description"><![CDATA[Hier kannst du den Link von einem Youtube / MyVideo / Clipfish / Vimeo Video angeben.]]>
+		</item>
+
+		<item name="wcf.user.option.category.profile.video"><![CDATA[Video]]>
+		</item>
+
+	</category>
+</language>

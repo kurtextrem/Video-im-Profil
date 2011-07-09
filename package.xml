@@ -3,12 +3,12 @@
 <package name="com.kurtextrem.useroption.video">
 	<packageInformation>
 		<packageName>Profilfeld Video</packageName>
-		<packageDescription lang="de"><![CDATA[Erlaubt Mitglieder, ihr liebstes VIdeo im Profil zu zeigen. Icon von ElegantThemes.com]]>
+		<packageDescription lang="de"><![CDATA[Erlaubt Mitglieder, ihr liebstes VIdeo im Profil zu zeigen.]]>
 		</packageDescription>
-		<packageDescription lang="en"><![CDATA[Enables users to show their favorite video. Icon by ElegantThemes.com]]>
+		<packageDescription lang="en"><![CDATA[Enables users to show their favorite video.]]>
 		</packageDescription>
-		<version>2.0.0</version>
-		<date>2011-05-04</date>
+		<version>2.0.1</version>
+		<date>2011-09-07</date>
 		<plugin>com.woltlab.wcf</plugin>
 	</packageInformation>
 
@@ -20,17 +20,17 @@
 	<instructions type="install">
 		<files>files.tar</files>
 		<useroptions>useroptions.xml</useroptions>
-		<languages languagecode="de">de.xml</languages>
-		<languages languagecode="de-informal">de-informal.xml</languages>
-		<languages languagecode="en">en.xml</languages>
-		<languages languagecode="fr">fr.xml</languages>
+		<languages languagecode="de">lang/de.xml</languages>
+		<languages languagecode="de-informal">lang/de-informal.xml</languages>
+		<languages languagecode="en">lang/en.xml</languages>
+		<languages languagecode="fr">lang/fr.xml</languages>
 	</instructions>
 	<instructions type="update" fromversion="*">
 		<files>files.tar</files>
 		<useroptions>useroptions.xml</useroptions>
-		<languages languagecode="de">de.xml</languages>
-		<languages languagecode="de-informal">de-informal.xml</languages>
-		<languages languagecode="en">en.xml</languages>
-		<languages languagecode="fr">fr.xml</languages>
+		<languages languagecode="de">lang/de.xml</languages>
+		<languages languagecode="de-informal">lang/de-informal.xml</languages>
+		<languages languagecode="en">lang/en.xml</languages>
+		<languages languagecode="fr">lang/fr.xml</languages>
 	</instructions>
 </package>
