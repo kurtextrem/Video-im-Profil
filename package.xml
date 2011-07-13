@@ -3,12 +3,12 @@
 <package name="com.kurtextrem.useroption.video">
 	<packageInformation>
 		<packageName>Profilfeld Video</packageName>
-		<packageDescription lang="de"><![CDATA[Erlaubt Mitglieder, ihr liebstes VIdeo im Profil zu zeigen.]]>
-		</packageDescription>
-		<packageDescription lang="en"><![CDATA[Enables users to show their favorite video.]]>
-		</packageDescription>
-		<version>2.0.1</version>
-		<date>2011-09-07</date>
+		<packageDescription lang="de"><![CDATA[Erlaubt Mitglieder, ihr liebstes VIdeo im Profil zu zeigen.]]></packageDescription>
+		<packageDescription lang="en"><![CDATA[Enables users to show their favorite video.]]></packageDescription>
+
+		<isunique>1</isunique>
+		<version>2.0.1 pl 1</version>
+		<date>2011-13-07</date>
 		<plugin>com.woltlab.wcf</plugin>
 	</packageInformation>
 
